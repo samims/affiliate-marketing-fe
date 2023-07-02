@@ -1,21 +1,21 @@
 <template>
     <div class="main-layout">
-      <Header />
+      <!-- <Header /> -->
       <div class="content">
         <router-view />
       </div>
-      <Footer />
+      <!-- <Footer /> -->
     </div>
   </template>
   
   <script>
-  import Header from '@/components/HeaderComponent.vue';
-  import Footer from '@/components/HeaderComponent.vue';
+  // import Header from '@/components/HeaderComponent.vue';
+  // import Footer from '@/components/HeaderComponent.vue';
   
   export default {
     components: {
-      Header,
-      Footer,
+      // Header,
+      // Footer,
     },
   };
   </script>

@@ -31,7 +31,10 @@ export default {
     async login(event) {
       event.preventDefault();
       try {
-        const response = await fetch('http://127.0.0.1:8000/login/', {
+        // Make an API request to authenticate the user
+        const apiUrl = 'http://0.0.0.0:8000'; // Replace with your API URL
+
+        const response = await fetch(apiUrl + "/login/", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -45,20 +48,30 @@ export default {
         if (response.ok) {
           // Login successful
           const data = await response.json();
-          localStorage.setItem('key', data.token);
-          // Store the token or perform any other actions
-          console.log(data);
+
+          // Store the authentication token in local storage
+          localStorage.setItem('token', data.token);
+
+          // Redirect the user to the home page
+          this.$router.push({ name: 'home' });
         } else {
           // Login failed
-          const errorData = await response.json();
-          this.errorMessage = errorData.message;
-          console.error('Login failed:', errorData);
+          const errorData = await response.text();
+          this.errorMessage = errorData;
         }
       } catch (error) {
         this.errorMessage = 'An error occurred during login.';
         console.error('An error occurred during login:', error);
       }
     },
+  },
+  created() {
+    // Check if the user is already authenticated
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Redirect the user to the home page
+      this.$router.push({ name: 'home' });
+    }
   },
 };
 </script>
@@ -68,15 +81,10 @@ export default {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f1f1f1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
   text-align: center;
-  color: #333;
   margin-bottom: 20px;
 }
 
@@ -94,7 +102,6 @@ form {
 label {
   margin-bottom: 5px;
   font-weight: bold;
-  color: #555;
 }
 
 input[type="email"],
@@ -106,7 +113,7 @@ input[type="password"] {
 
 button {
   padding: 10px;
-  background-color: #17c350; /* Change to your desired color */
+  background-color: #17c350;
   color: #fff;
   border: none;
   border-radius: 3px;
@@ -116,7 +123,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3; /* Change to your desired color */
+  background-color: #0056b3;
 }
 
 .error-message {

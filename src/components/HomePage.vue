@@ -15,6 +15,9 @@
     },
     methods: {
       logout() {
+        localStorage.removeItem('token');
+        this.$router.push({ name: 'login' });
+    
         // Implement logout functionality here
         // Clear authentication token, redirect to login page, etc.
       }

@@ -1,7 +1,7 @@
 <!-- <template>
     <div class="affiliate-products">
       <h2>Affiliate Products</h2>
-      <!-- Rest of your component's code -->
+      <!-- Rest of your component's code
     </div>
   </template>
   
@@ -14,4 +14,4 @@
   <style>
   /* Component styles go here */
   </style>
-   -->
+   --> -->

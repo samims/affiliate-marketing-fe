@@ -3,8 +3,11 @@
       <HeaderComponent />
         
       <main class="main-content">
-        <slot></slot>
+        <slot>
+          <router-view />
+        </slot>
       </main>
+
   
       <FooterComponent />
     </div>
