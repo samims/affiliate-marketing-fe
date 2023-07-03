@@ -32,7 +32,7 @@ export default {
       event.preventDefault();
       try {
         // Make an API request to authenticate the user
-        const apiUrl = 'http://0.0.0.0:8000'; // Replace with your API URL
+        const apiUrl = 'http://localhost:8000'; // Replace with your API URL
 
         const response = await fetch(apiUrl + "/login/", {
           method: 'POST',
